@@ -2,9 +2,16 @@
 oldDiff=`git config --global diff.external`
 echo 'oldDiff' $oldDiff
 
-diffDir="/tmp/gitDiff"
+diffDirNum=0
+diffDir="/tmp/gitDiff"${diffDirNum}
+while [ -d "$diffDir" ] ; do
+	diffDirNum=`expr ${diffDirNum} + 1`
+	diffDir="/tmp/gitDiff"${diffDirNum}
+done
+#diffDir=${diffDir}${diffDirNum}
+echo 'diffDir :' ${diffDir}
+
 export diffDir
-rm $diffDir -rf
 oldDir="old"
 newDir="new"
 export oldDir
@@ -25,7 +32,7 @@ else
 fi
 
 echo 'curDiff :'  `git config --global diff.external`
-meld /tmp/gitDiff/$oldDir /tmp/gitDiff/$newDir
+meld ${diffDir}/$oldDir ${diffDir}/$newDir
 
 rm $diffDir -rf 
 echo 'gitdiff finish'
