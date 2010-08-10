@@ -1,0 +1,15 @@
+#!/bin/sh
+#echo $*
+oldTargetFile=${diffDir}/${oldDir}/"$1"
+mkdir -p `dirname $oldTargetFile`
+cp "$2" ${diffDir}/${oldDir}/"$1"
+#echo 'copy' "$2" 'to' ${diffDir}/${oldDir}/"$1"
+tmpDir=`pwd` 
+#echo ${tmpDir}/${5}
+newTargetDir=`dirname ${diffDir}/${newDir}/"${1}"`
+mkdir -p $newTargetDir
+cd $newTargetDir
+ln -s ${tmpDir}/${5} 
+cd -
+#echo HO  `pwd`
+echo 'copyed' "$1" 

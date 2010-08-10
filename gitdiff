@@ -1,0 +1,31 @@
+#!/bin/sh
+oldDiff=`git config --global diff.external`
+echo 'oldDiff' $oldDiff
+
+diffDir="/tmp/gitDiff"
+export diffDir
+rm $diffDir -rf
+oldDir="old"
+newDir="new"
+export oldDir
+export newDir 
+mkdir -p ${diffDir}/$oldDir 
+mkdir -p ${diffDir}/$newDir
+
+newDiff='gitMyDiff'
+
+git config --global diff.external /usr/local/bin/$newDiff
+echo 'curDiff :'  `git config --global diff.external`
+git diff
+
+if [ $oldDiff ]; then
+	git config --global diff.tool $oldDiff
+else
+	git config --global --unset diff.external
+fi
+
+echo 'curDiff :'  `git config --global diff.external`
+meld /tmp/gitDiff/$oldDir /tmp/gitDiff/$newDir
+
+rm $diffDir -rf 
+echo 'gitdiff finish'

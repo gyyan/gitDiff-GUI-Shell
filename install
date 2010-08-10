@@ -1,0 +1,5 @@
+#!/bin/sh
+cp gitdiff gitMyDiff /usr/local/bin
+echo 'cp gitdiff gitMyDiff /usr/local/bin'
+echo 'install finish'
+ 
