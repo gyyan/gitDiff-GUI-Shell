@@ -26,7 +26,7 @@ echo 'curDiff :'  `git config --global diff.external`
 git diff
 
 if [ $oldDiff ]; then
-	git config --global diff.tool $oldDiff
+	git config --global diff.external $oldDiff
 else
 	git config --global --unset diff.external
 fi
