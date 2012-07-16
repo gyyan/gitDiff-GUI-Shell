@@ -2,14 +2,18 @@
 #echo $*
 oldTargetFile=${diffDir}/${oldDir}/"$1"
 mkdir -p `dirname $oldTargetFile`
-cp "$2" ${diffDir}/${oldDir}/"$1"
-#echo 'copy' "$2" 'to' ${diffDir}/${oldDir}/"$1"
+if [ $2 != '/dev/null' ]; then
+    cp "$2" ${diffDir}/${oldDir}/"$1"
+fi
 tmpDir=`pwd` 
-#echo ${tmpDir}/${5}
 newTargetDir=`dirname ${diffDir}/${newDir}/"${1}"`
 mkdir -p $newTargetDir
 cd $newTargetDir
-ln -s ${tmpDir}/${5} 
+if [ ${5:0:4} == '/tmp'  ]; then
+    cp "$5" ${diffDir}/${newDir}/"$1"
+    echo 'new copy' ${diffDir}/${newDir}/"$1"
+elif [ $5 != '/dev/null' ]; then
+    ln -s ${tmpDir}/${5}
+    echo 'new ln' ${tmpDir}/${5}
+fi
 cd -
-#echo HO  `pwd`
-echo 'copyed' "$1" 

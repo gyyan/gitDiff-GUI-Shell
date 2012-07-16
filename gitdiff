@@ -3,11 +3,12 @@
 #beacuse the git config --unset value do not delete the section,if the section do not have items.
 git config --global diff.nouse 0
 
-if [ $1 = "-c" ]; then
-diffParameter="--cached"
-else
-diffParameter=""
-fi
+diffParameter=$1
+#if [ $1 = "-c" ]; then
+#diffParameter="--cached"
+#else
+#diffParameter=""
+#fi
 
 oldDiff=`git config --global diff.external`
 echo 'oldDiff' $oldDiff
