@@ -1,1 +1,16 @@
 it just a Shell to call gui diff for git
+
+INSTALL:
+1.open gitdiff , Change 'diffTool'to gui diff tool you love.
+  Example:
+  (Linux)
+  diffTool=meld
+  (MACOS)
+  diffTool=diffmerge
+
+2. just copy gitdiff and gitMyDiff to bin. you can use next script
+   ./install
+   
+3. in your git , use 'gitdiff' instead 'git diff'
+
+Enjoy~~~

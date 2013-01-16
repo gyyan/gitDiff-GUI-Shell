@@ -1,4 +1,5 @@
 #!/bin/sh
+chmod +x gitdiff gitMyDiff 
 cp gitdiff gitMyDiff /usr/local/bin
 echo 'cp gitdiff gitMyDiff /usr/local/bin'
 echo 'install finish'

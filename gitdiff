@@ -2,7 +2,7 @@
 #it just insert a nouse value,
 #beacuse the git config --unset value do not delete the section,if the section do not have items.
 git config --global diff.nouse 0
-
+diffTool=diffmerge
 diffParameter=$1
 #if [ $1 = "-c" ]; then
 #diffParameter="--cached"
@@ -43,7 +43,7 @@ else
 fi
 
 echo 'curDiff :'  `git config --global diff.external`
-meld ${diffDir}/$oldDir ${diffDir}/$newDir
+$diffTool ${diffDir}/$oldDir ${diffDir}/$newDir
 
-rm $diffDir -rf 
+rm -rf $diffDir  
 echo 'gitdiff finish'
